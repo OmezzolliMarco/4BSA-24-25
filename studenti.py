@@ -32,3 +32,11 @@ studente1 = Studente("Mario", "Rossi", "12345")
 studente1.aggiungi_voto(8)
 studente1.aggiungi_voto(7)
 studente1.salva_su_file("studenti.csv")
+
+studente2 = Studente("Mario", "Verdi", "1111")
+studenti = []
+studenti.append(studente1)
+studenti.append(studente2)
+
+for s in studenti:
+    s.aggiungi_voto(7)
