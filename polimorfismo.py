@@ -2,7 +2,7 @@ class Animale():
     def __init__(self, nome):
         self.nome = nome
     def fai_suono(self):
-        print("Un suono")
+        pass
 
 #creo la classe gatto che eredita da Animale
 class Gatto(Animale):
@@ -26,6 +26,7 @@ cane.fai_suono()
 gatto.fai_suono()
 
 #utilizzando invece un'interfaccia comune e il polimorfismo di tipo
+
 def suonoAnimale(animale: Animale): #posso specificare il tipo dell'argomento
     animale.fai_suono()
 
