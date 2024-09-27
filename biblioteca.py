@@ -25,6 +25,22 @@ class Saggio(Libro):
     def toString(self):
         return f"{self.titolo}-{self.autore}-{self.anno}-{self.genere}"
 
-r1 = Romanzo("Il signore degli anelli", "Tolkien", 1980, "Fantasy")
-print(r1)
+#definizione classe biblioteca
+class Biblioteca:
+    def __init__(self):
+        self.libri = []
+    def aggiungi_libro(self, libro):
+        self.libri.append(libro)
+    def visualizza_libri(self):
+        for libro in self.libri:
+            print(libro)
 
+
+
+l1 = Romanzo("Il signore degli anelli", "Tolkien", 1980, "Fantasy")
+l2 = Romanzo("Harry Potter 1", "Rowling", 2001, "Fantasy")
+
+b = Biblioteca()
+b.aggiungi_libro(l1)
+b.aggiungi_libro(l2)
+b.visualizza_libri()
