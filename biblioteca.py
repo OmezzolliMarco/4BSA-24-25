@@ -20,9 +20,9 @@ class Saggio(Libro):
     def __init__(self, titolo, autore, anno, tema):
         super().__init__(titolo, autore, anno)
         self.tema = tema
-    def __str__(self):
+    def __str__(self): #override del metodo di Python
         return f"{self.titolo}, {self.autore}, {self.anno}, {self.tema}"
-    def toString(self):
+    def toString(self): #metodo che ci serve per stampare l'oggetto su file
         return f"{self.titolo}-{self.autore}-{self.anno}-{self.genere}"
 
 #definizione classe biblioteca
@@ -34,6 +34,11 @@ class Biblioteca:
     def visualizza_libri(self):
         for libro in self.libri:
             print(libro)
+    def scrivi_file(self):
+        with open("libri.txt", "w") as file:
+            for libro in self.libri:
+                file.write(libro.toString())
+                file.write("\n")
 
 
 
