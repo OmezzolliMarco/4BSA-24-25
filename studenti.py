@@ -15,7 +15,12 @@ class Studente:
         self.voti = []
 
     def aggiungi_voto(self, voto):
-        self.voti.append(voto)
+        try:
+            voto = float(voto)
+            self.voti.append(voto)
+        except:
+            print("Voto non valido")
+        
 
     def calcola_media(self):
         if self.voti:
