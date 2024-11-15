@@ -8,7 +8,7 @@ class TicTacToe:
         self.root.geometry("400x400")
 
         #giocatori
-        self.player = "X" #il giocatore che inizia parte con la x
+        self.player = "O" #il giocatore che inizia parte con la x
 
         #piano di gioco
         self.board = [] #risultati
@@ -30,8 +30,14 @@ class TicTacToe:
             button.grid(row=i//3, column=i%3, sticky="NSEW")
             self.pulsanti.append(button)
 
-
-
+    def clickPulsante(self, i):
+        self.pulsanti[i].configure(text=self.player)
+        if self.player == "X":
+            self.player = "O"
+        else:
+            self.player = "X"
+    def controllaVincitore(self):
+        #da completare...
 #main
 root = tk.Tk()
 ttt = TicTacToe(root)
