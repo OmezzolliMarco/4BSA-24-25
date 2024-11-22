@@ -11,7 +11,7 @@ class TicTacToe:
         self.player = "O" #il giocatore che inizia parte con la x
 
         #piano di gioco
-        self.board = [] #risultati
+        global griglia
 
         #struttura del piano da gioco
         self.pulsanti = []
@@ -31,14 +31,57 @@ class TicTacToe:
             self.pulsanti.append(button)
 
     def clickPulsante(self, i):
-        self.pulsanti[i].configure(text=self.player)
-        if self.player == "X":
-            self.player = "O"
-        else:
-            self.player = "X"
+        if self.pulsanti[i].cget("text") == "":
+            self.pulsanti[i].configure(text=self.player)
+            griglia[i//3][i%3] = self.player
+            if self.player == "X":
+                self.player = "O"
+            else:
+                self.player = "X"
+
+            winner = self.controllaVincitore()
+            if winner != None: #controlla che non sia None
+                #ho trovato vincitore o pareggio
+                if winner == "X" or winner == "O":
+                    messagebox.showinfo("Vincitore", "Ha vinto " + winner)
+                if winner == "Pareggio":
+                    messagebox.showinfo("Vincitore", "Pareggio")
+                self.resetGame()
+
     def controllaVincitore(self):
-        #da completare...
+        #controllo orizzontali e verticali
+        for i in range(3):
+            if griglia[i][0] == griglia[i][1] == griglia[i][2] != "":
+                return griglia[i][0]
+            if griglia[0][i] == griglia[1][i] == griglia[2][i] != "":
+                return griglia[0][i]
+        #controllo diagonali
+        if griglia[0][0] == griglia[1][1] == griglia[2][2] != "":
+            return griglia[0][0]
+        if griglia[0][2] == griglia[1][1] == griglia[2][0] != "":
+            return griglia[1][1]
+        
+        #controllo pareggio
+        if all(all(cell != "" for cell in row)for row in griglia):
+            return "Pareggio"
+        else:
+            return None
+    def resetGame(self):
+        for pulsante in self.pulsanti:
+            pulsante.configure(text="")
+        for i in range(3):
+            for j in range(3):
+                griglia[i][j]=""
 #main
+
+#creazione la griglia
+griglia = []
+for i in range(3):
+    #definizione delle righe
+    griglia.append([])
+    for j in range(3):
+        griglia[i].append("") #celle vuote che andranno riempite con X o O
+
 root = tk.Tk()
 ttt = TicTacToe(root)
 
