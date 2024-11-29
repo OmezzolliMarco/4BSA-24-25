@@ -37,6 +37,21 @@ class Lista:
         self.label2 = tk.Label(self.frame2, text="Lista prodotti")
         self.label2.pack(pady=10, padx=10)
 
+        self.listbox = tk.Listbox(self.frame2, width=40, height=10)
+        self.listbox.pack(padx=5)
+
+    def aggiungiProdotto(self):
+        elemento = self.variabileProdotto.get()
+        self.listaSpesa.append(elemento)
+        self.listbox.insert(tk.END, elemento)
+    
+    def rimuoviProdotto(self):
+        #trovo quello selezionato
+        indice_selezionato = self.listbox.curselection()[0]
+        #trovo il testo dell'elemento selezionato
+        prodotto_selezionato = self.listbox.get(indice_selezionato)
+        self.listaSpesa.remove(prodotto_selezionato)
+        self.listbox.delete(indice_selezionato)
 
 #main
 root = tk.Tk()
